@@ -12,6 +12,7 @@ services:
       - "5432:5432"
 
   backend:
+    restart: always
     build: .
     command: bash -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"
     ports:

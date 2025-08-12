@@ -18,14 +18,14 @@ _organizations_service = OrganizationsService()
 
 
 @router.get("/", response_model=List[OrganizationRead])
-async def list_organizations(
+async def get_all_organizations(
         session: AsyncSession = Depends(get_session)
 ):
     return await _organizations_service.get_all_organizations(session)
 
 
 @router.get("/search", response_model=List[OrganizationRead])
-async def search_organizations(
+async def get_organizations_by_name(
         name: str = Query(..., min_length=1),
         session: AsyncSession = Depends(get_session)
 ):
@@ -33,7 +33,7 @@ async def search_organizations(
 
 
 @router.get("/near", response_model=List[OrganizationRead])
-async def organizations_near(
+async def get_organizations_near(
         lat: float = Query(..., ge=-90.0, le=90.0),
         lon: float = Query(..., ge=-180.0, le=180.0),
         radius_km: float = Query(..., gt=0.0),
@@ -43,7 +43,7 @@ async def organizations_near(
 
 
 @router.get("/within", response_model=List[OrganizationRead])
-async def organizations_within_bbox(
+async def get_organizations_within(
         lat_min: float = Query(...),
         lon_min: float = Query(...),
         lat_max: float = Query(...),
