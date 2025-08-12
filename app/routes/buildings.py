@@ -13,7 +13,7 @@ _building_service = BuildingsService()
 
 
 @router.get("/{building_id}/organizations", response_model=List[OrganizationRead])
-async def orgs_in_building(
+async def organizations_in_building(
         building_id: int,
         session: AsyncSession = Depends(get_session)
 ):

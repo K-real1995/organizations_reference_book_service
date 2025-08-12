@@ -54,7 +54,7 @@ async def get_organizations_within(
 
 
 @router.get("/{organization_id}", response_model=OrganizationRead)
-async def get_organization(
+async def get_organization_by_id(
         organization_id: int,
         session: AsyncSession = Depends(get_session)
 ):
